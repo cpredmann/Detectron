@@ -20,13 +20,13 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import cPickle as pickle
+import _pickle as pickle
 import hashlib
 import logging
 import os
 import re
 import sys
-import urllib2
+import urllib
 
 logger = logging.getLogger(__name__)
 

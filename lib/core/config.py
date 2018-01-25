@@ -1119,7 +1119,7 @@ def _merge_a_into_b(a, b, stack=None):
 
 def _key_is_deprecated(full_key):
     if full_key in _DEPCRECATED_KEYS:
-        logger.warn(
+        logger.warning(
             'Deprecated config key (ignoring): {}'.format(full_key)
         )
         return True
