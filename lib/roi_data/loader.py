@@ -79,7 +79,7 @@ class RoIDataLoader(object):
         # When training with N > 1 GPUs, each element in the minibatch queue
         # is actually a partial minibatch which contributes 1 / N of the
         # examples to the overall minibatch
-        self._minibatch_queue = Queue.Queue(maxsize=minibatch_queue_size)
+        self._minibatch_queue = Queue(maxsize=minibatch_queue_size)
         self._blobs_queue_capacity = blobs_queue_capacity
         # Random queue name in case one instantiates multple RoIDataLoaders
         self._loader_id = uuid.uuid4()

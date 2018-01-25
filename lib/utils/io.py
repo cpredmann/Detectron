@@ -45,7 +45,7 @@ def cache_url(url_or_file, cache_dir):
     path to the cached file. If the argument is not a URL, simply return it as
     is.
     """
-    is_url = re.match(r'^(?:http)s?://', url_or_file, re.IGNORECASE) is not None
+    is_url = re.match(rb'^(?:http)s?://', url_or_file, re.IGNORECASE) is not None
 
     if not is_url:
         return url_or_file
