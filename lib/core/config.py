@@ -37,13 +37,13 @@ Detectron supports a lot of different model types, each of which has a lot of
 different options. The result is a HUGE set of configuration options.
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+
+
+
 
 from ast import literal_eval
-from past.builtins import basestring
+from past.builtins import str
 from utils.collections import AttrDict
 import copy
 import logging
@@ -1091,7 +1091,7 @@ def _merge_a_into_b(a, b, stack=None):
     assert isinstance(a, AttrDict), 'Argument `a` must be an AttrDict'
     assert isinstance(b, AttrDict), 'Argument `b` must be an AttrDict'
 
-    for k, v_ in a.items():
+    for k, v_ in list(a.items()):
         full_key = '.'.join(stack) + '.' + k if stack is not None else k
         # a must specify keys that are in b
         if k not in b:
@@ -1152,7 +1152,7 @@ def _decode_cfg_value(v):
     if isinstance(v, dict):
         return AttrDict(v)
     # All remaining processing is only applied to strings
-    if not isinstance(v, basestring):
+    if not isinstance(v, str):
         return v
     # Try to interpret `v` as a:
     #   string, number, tuple, list, dict, boolean, or None
@@ -1190,7 +1190,7 @@ def _check_and_coerce_cfg_value_type(value_a, value_b, key, full_key):
     # Exceptions: numpy arrays, strings, tuple<->list
     if isinstance(value_b, np.ndarray):
         value_a = np.array(value_a, dtype=value_b.dtype)
-    elif isinstance(value_b, basestring):
+    elif isinstance(value_b, str):
         value_a = str(value_a)
     elif isinstance(value_a, tuple) and isinstance(value_b, list):
         value_a = list(value_a)

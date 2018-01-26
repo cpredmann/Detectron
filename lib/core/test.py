@@ -23,10 +23,10 @@
 
 """Inference functionality for most Detectron models."""
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+
+
+
 
 from collections import defaultdict
 import cv2
@@ -143,7 +143,7 @@ def im_detect_bbox(model, im, boxes=None):
     if cfg.FPN.MULTILEVEL_ROIS and not cfg.MODEL.FASTER_RCNN:
         _add_multilevel_rois_for_test(inputs, 'rois')
 
-    for k, v in inputs.items():
+    for k, v in list(inputs.items()):
         workspace.FeedBlob(core.ScopedName(k), v)
     workspace.RunNet(model.net.Proto().name)
 
@@ -384,7 +384,7 @@ def im_detect_mask(model, im_scales, boxes):
     if cfg.FPN.MULTILEVEL_ROIS:
         _add_multilevel_rois_for_test(inputs, 'mask_rois')
 
-    for k, v in inputs.items():
+    for k, v in list(inputs.items()):
         workspace.FeedBlob(core.ScopedName(k), v)
     workspace.RunNet(model.mask_net.Proto().name)
 
@@ -560,7 +560,7 @@ def im_detect_keypoints(model, im_scales, boxes):
     if cfg.FPN.MULTILEVEL_ROIS:
         _add_multilevel_rois_for_test(inputs, 'keypoint_rois')
 
-    for k, v in inputs.items():
+    for k, v in list(inputs.items()):
         workspace.FeedBlob(core.ScopedName(k), v)
     workspace.RunNet(model.keypoint_net.Proto().name)
 

@@ -13,10 +13,10 @@
 # limitations under the License.
 ##############################################################################
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+
+
+
 
 import numpy as np
 import logging
@@ -82,7 +82,7 @@ def run_net(net):
 
 class TestRoIDataLoader(unittest.TestCase):
     @mock.patch('roi_data.loader.get_minibatch_blob_names',
-                return_value=[u'data'])
+                return_value=['data'])
     @mock.patch('roi_data.loader.get_minibatch', side_effect=get_roidb_blobs)
     def test_two_parallel_loaders(self, _1, _2):
         train_data = np.random.rand(2, 3, 3).astype(np.float32)

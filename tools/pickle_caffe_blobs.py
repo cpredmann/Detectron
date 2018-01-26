@@ -20,13 +20,13 @@ format used by Detectron. For example, this script can convert the orignal
 ResNet models released by MSRA.
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+
+
+
 
 import argparse
-import cPickle as pickle
+import pickle as pickle
 import numpy as np
 import os
 import sys
@@ -115,7 +115,7 @@ def remove_spatial_bn_layers(caffenet, caffenet_weights):
     remove_types = ['BatchNorm', 'Scale']
 
     def _remove_layers(net):
-        for i in reversed(range(len(net.layer))):
+        for i in reversed(list(range(len(net.layer)))):
             if net.layer[i].type in remove_types:
                 net.layer.pop(i)
 
@@ -158,7 +158,7 @@ def remove_spatial_bn_layers(caffenet, caffenet_weights):
 
 
 def remove_layers_without_parameters(caffenet, caffenet_weights):
-    for i in reversed(range(len(caffenet_weights.layer))):
+    for i in reversed(list(range(len(caffenet_weights.layer)))):
         if len(caffenet_weights.layer[i].blobs) == 0:
             # Search for the corresponding layer in caffenet and remove it
             name = caffenet_weights.layer[i].name

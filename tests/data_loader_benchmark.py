@@ -19,10 +19,10 @@
 #   NUM_GPUS 2 \
 #   TRAIN.PROPOSAL_FILES /path/to/voc_2007_trainval/proposals.pkl
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+
+
+
 
 import argparse
 import logging
